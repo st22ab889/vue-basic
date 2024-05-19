@@ -1,0 +1,21 @@
+vue官网 
+	vue2：https://v2.cn.vuejs.org/v2/guide/installation.html
+	vue3：https://cn.vuejs.org/
+	
+vue包括
+	vue基础 
+	vue-cli vue脚手架，专业做工程化开发
+	vue-router
+	vuex 当应用足够复杂时，可以借助它保管数据
+	element-ui UI组件库
+	vue3
+
+前置知识：
+	ES6语法规范
+	ES6模块
+	包管理器
+	原型、原型链
+	数据常用方法
+	axios
+	promise
+	Webpack

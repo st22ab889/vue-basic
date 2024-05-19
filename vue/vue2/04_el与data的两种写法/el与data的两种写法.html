@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>el与data的两种写法</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <h1>hello {{name}} </h1>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false 
+
+        const v = new Vue({
+            // el:'#root',          // el 的第一种写法
+            
+            /* data的第一种写法：对象式
+            data:{
+                name:'html'
+            }
+            */
+
+            // data的第二种写法：函数式, 组件必须要使用函数式。 data:function() 表示data的属性是一个函数，可以简写为 data()
+            data:function(){
+                console.log('@@@', this)
+                return{
+                    name:'html'
+                }
+            }
+           
+            /* 注意: 由Vue管理的函数，一定不要写箭头函数，一旦写了箭头函数，this就不再是Vue实例了。而是window
+            data:()=>{
+                // code ......
+            } 
+            */
+        })
+
+        console.log(v)
+        
+        setTimeout(() => {
+            v.$mount('#root')        // el 的第二种写法，这种更灵活
+        }, 1000)
+       
+    </script>
+</body>
+</html>
+
+

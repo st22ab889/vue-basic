@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>事件的基本使用</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <!-- 
+    事件的基本使用：
+        1.使用v-on:xxx 或 @xxx 绑定事件，其中xxx是事件名；
+        2.事件的回调需要配置在methods对象中，最终会在vm上；
+        3.methods中配置的函数，不要用箭头函数！否则this就不是vm了；
+        4.methods中配置的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象；
+        5.@click="demo" 和 @click="demo($event)" 效果一致，但后者可以传参；
+    -->
+    <div id="root">
+        <h2>今天的主题是"{{topic}}"</h2>
+        <button v-on:click="showinfo1">获取提示信息</button>
+        <button @click="showinfo2(66)">获取提示信息</button>
+        <button @click="showinfo3($event, 88)">获取提示信息</button>
+        <button @click="showinfo4($event, 88)">获取提示信息</button>
+    </div>
+
+    <script type="text/javascript">
+       
+       Vue.config.productionTip = false 
+
+        function showinfo(){
+            alert('感谢点击')
+        }
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                topic:'事件的基本使用',
+                // 也可以把方法写在data中,但是没有意义,因为生成的get和set是对方法体操作,但一般不会修改方法体
+                showinfo1(event){
+                    console.log(event.target.innerText)
+                    // 如果把方法写在data中，这里拿到的this是window对象
+                    console.log(this)   
+                    alert('感谢点击')
+                },
+            },
+            methods:{
+                showinfo2(value){
+                    console.log(this)
+                    alert(value)
+                }, 
+                showinfo3(event, value){
+                    console.log(event.target.innerText)
+                    console.log(this)
+                    alert(value)
+                },
+                // 如果写成箭头这样的函数,那么这个this代表window这个对象
+                showinfo4:(event, value)=>{
+                    console.log(event.target.innerText)
+                    console.log(this)
+                    alert(value)
+                },
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>初始Vue</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+        <!-- 
+            root容器里的代码称为 Vue 模板, "{{xxx}}"是一个模板语法
+            "{{xxx}}"是Vue的 插值 语法, xxx必须是JS表达式(表达式概念: 一个表达式会产生一个值，可以放在任何一个需要值的地方), 且xxx可以自动读取到data中的所有属性；
+            一旦data中的数据发生改变，那么页面中用到该数据的地方也会自动更新.
+        -->
+        <h1>Username: {{user}}</h1>
+        <h1>Password: {{passwd.toUpperCase()}}</h1>
+        <h1>1 + 1 = {{1+1}}</h1>    
+        <h1>Now Time: {{Date.now()}}</h1>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false                // 阻止 vue 在启动时生成生产提示，新版本Chrome浏览器中这个功能已失效
+
+        // 创建Vue实例, 容器和实例时1对1的关系
+        const x = new Vue({
+            // el:document.getElementById('root')       // 通常不这样写
+            el:'#root',                                 // id 选择器是"#", 类选择器是".", 一般都用id 
+            data:{
+                user:'admin',
+                passwd:'jkajsdjfodasdf'    
+            }
+        })
+    </script>
+</body>
+</html>
+
+<!--
+理解vue2.x版本中productionTip=false设置无效的原因：https://www.yii666.com/blog/407659.html
+
+BOM与DOM：https://blog.csdn.net/weixin_47432345/article/details/126211808
+
+如何理解Node.js和JavaScript的关系：https://www.cnblogs.com/wuxs2008/p/16058467.html
+
+前端是否要学习 Node.js?    https://blog.csdn.net/u012384510/article/details/121026751
+    Node.js 不是一门新的编程语言，Node.js 是 JavaScript 在服务端的运行时，提供了读写文件、网络编程的能力
+    使得 JavaScript 开发者可以使用 Node.js 写一些 CLI 工具、编写一些 Web 服务器。
+-->
